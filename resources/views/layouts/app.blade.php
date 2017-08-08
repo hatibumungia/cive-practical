@@ -8,10 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>CIVE - @yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -70,8 +72,24 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="container-fluid">
+            <div class="row">
+            @if(Auth::check())
+                <div class="col-sm-2">
+                    @include('partials.sidebar')
+                </div>
+                <div class="col-sm-10">
+                    @include('message.success')
+                    @include('message.error-list')
+                    @yield('content')   
+                </div>
+            @else
+                <div class="col-sm-12">
+                    @yield('content')   
+                </div>
+            @endif
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
