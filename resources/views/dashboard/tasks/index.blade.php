@@ -6,7 +6,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
         	<div class="row">
-        		<div class="col-sm-6">All Tasks</div>
+        		<div class="col-sm-6">All Tasks <span class="badge">{{$tasksCounts}}</span></div>
         		<div class="col-sm-6">
         			<a href="/tasks/create" class="pull-right">New Task</a>
         		</div>

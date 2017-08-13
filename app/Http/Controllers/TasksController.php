@@ -17,7 +17,9 @@ class TasksController extends Controller
     {
         $tasks = Task::latest('updated_at')->paginate(10);
 
-        return view('dashboard.tasks.index', compact('tasks'));
+        $tasksCounts = Task::count();
+
+        return view('dashboard.tasks.index', compact('tasks','tasksCounts'));
     }
 
     /**

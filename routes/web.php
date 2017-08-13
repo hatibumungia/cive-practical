@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
 });
 
 Auth::routes();
@@ -22,5 +22,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('/tasks', 'TasksController');
 	Route::post('/tasks/{task}/complete-status', 'TasksController@completeStatus');
+	
+
+	Route::group(['middleware' => 'isAdmin'], function () {
+
+		Route::get('/users', 'HomeController@allUser');
+		Route::get('/users/show-user/{user}', 'HomeController@showUser');
+		Route::post('/users/{user}/is-admin', 'HomeController@isAdmin');
+	});
 
 });
